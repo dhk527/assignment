@@ -1,6 +1,10 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror 
 
+ifdef DCT_1d
+	CFLAGS += -DDCT_1d
+endif
+
 #define exe file
 TARGET = RUN_DCT_Rdata2
 
