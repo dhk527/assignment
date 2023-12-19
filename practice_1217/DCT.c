@@ -45,6 +45,14 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
         printf("\n");
   }
    
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) { 
+            change_buffer[i*n+j] = buffer[i][j];
+        printf("%d ",change_buffer[i*n+j]); // 2D를 1D로 변환완료.
+	}
+        printf("\n");
+  }
+   
   printf("\n\nDCT 1-Dimension  변환 시 : \n");
     for (i = 0; i < m; i++) {
         for (j = 0; j < n; j++) {
