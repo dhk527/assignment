@@ -27,13 +27,22 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
     float k;
     float csum = 0.0f;
     float iresult[ROWS*COLS]; 
-    float change_buffer_float[ROWS*COLS];
+    unsigned char change_buffer[ROWS*COLS];
+
+    printf("size unsigned char= %ld \n",sizeof(unsigned char));
 
   for (i = 0; i < m; i++) {
-        for (j = 0; j < n; j++) {
-            change_buffer_float[i*n+j] = buffer[i][j];
-        printf("%.1f ",change_buffer_float[i*n+j]); // 2D를 1D로 변환완료.
+        for (j = 0; j < n; j++){  
+                 printf("%p ",&buffer[i][j]); // 2D를 1D로 변환완료.
+}printf("\n");
+}
+     printf("\n\n");      
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++) { 
+            change_buffer[i*n+j] = buffer[i][j];
+        printf("%p ",&change_buffer[i*n+j]); // 2D를 1D로 변환완료.
 	}
+        printf("\n");
   }
    
   printf("\n\nDCT 1-Dimension  변환 시 : \n");
@@ -43,7 +52,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
 	
 	       for (u = 0; u < m; u++)
                 for (v = 0; v < n; v++)
-                    csum += change_buffer_float[u*n + v]
+                    csum += change_buffer[u*n + v]
                         *cos((2 * u + 1) * i * M_PI / (2 * m))
                         *cos((2 * v + 1) * j * M_PI / (2 * n));
 	    
@@ -52,7 +61,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
             else k = 1;
 
             result[i * n + j] = (2 * csum * k) / n;
-            printf("%.1f ", result[i*n + j]); // fraction 1자리
+            printf("%.1f", result[i*n + j]); // fraction 1자리
        	}
         printf("\n");
     }    
@@ -72,7 +81,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
                 }
             iresult[i * n + j] =  csum *(2.0 / n);
 
-            printf("%0.1f ", iresult[i * n + j]);
+            printf("%.1f ", iresult[i * n + j]);
         }
         printf("\n");
     }
