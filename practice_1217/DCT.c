@@ -33,7 +33,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
 
   for (i = 0; i < m; i++) {
         for (j = 0; j < n; j++){  
-                 printf("%p ",&buffer[i][j]); // 2D를 1D로 변환완료.
+                 printf("%p ",&buffer[i][j]); // 1D 의 주소를 보여줌
 }printf("\n");
 }
      printf("\n\n");      
@@ -69,7 +69,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
             else k = 1;
 
             result[i * n + j] = (2 * csum * k) / n;
-            printf("%.1f", result[i*n + j]); // fraction 1자리
+            printf("%.1f ", result[i*n + j]); // fractio 아래 1자리
        	}
         printf("\n");
     }    
