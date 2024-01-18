@@ -21,31 +21,17 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
 	if(buffer == NULL){
 		perror("error\n");
 	}
-
-	printf ("\n========================================================\n");
-
 	int u, v, i, j;
 	int m = ROWS, n = COLS;
 	float k;
 	float csum = 0.0f;
 	float iresult[ROWS*COLS]; 
 	unsigned char change_buffer[ROWS*COLS];
-
-/*	printf("size unsigned char= %ld \n",sizeof(unsigned char));
-
-	for (i = 0; i < m; i++) {
-		for (j = 0; j < n; j++){  
-			printf("%p ",&buffer[i][j]); // 1D 의 주소를 보여줌
-		}
-		//printf("\n");
-	}
-*/
+	
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) { 
 			change_buffer[i*n+j] = buffer[i][j];
-		//	printf("%d ",change_buffer[i*n+j]); // 2D를 1D로 변환완료.
 		}
-		//printf("\n");
 	}
 
 	printf("\n\nDCT 1-Dimension  변환 시 : \n");
@@ -95,8 +81,6 @@ void DCT(unsigned char buffer[ROWS][COLS], float result[ROWS][COLS]){
 	if(buffer == NULL){
 		perror("error\n");
 	}
-	printf("\n===============================================================================\n"); 
-
 	int u,v,m,n,i,j;
 	m= ROWS, n=COLS;
 	float k;
@@ -145,65 +129,59 @@ void DCT(unsigned char buffer[ROWS][COLS], float result[ROWS][COLS]){
 
 }
 
-float** dynamic_DCT_1Dto2D(unsigned char buffer[ROWS][COLS], float **ppResult_2D)
+float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1Dto2Darr)
 {
 	int i, j;
 	float csum = 0.0f;
 	float k = 0.0f;
-	unsigned char* dynamicArray_1d = (unsigned char*)malloc(ROWS * COLS * sizeof(unsigned char)); // input 1d;
-
-	for (i = 0; i < ROWS; i++)
-		for (j = 0; j < COLS; j++)
-			dynamicArray_1d[i*COLS + j] = buffer[i][j];//1차원 동적배열시 순서대로 출력됐음.
+//	float result[ROWS*COLS];
 
 	printf("\n\n DCT malloc-1-Dimension 변환 시 : \n");
 	for (i = 0; i < ROWS; i++) {
 		for (j = 0; j < COLS; j++) {
-			csum =0;
-
 			for (int u = 0; u < ROWS; u++)
 				for (int v = 0; v < COLS; v++)
-					csum += dynamicArray_1d[u*COLS + v]
+					csum += input_dynArr[u*COLS + v]
 						* cos((2 * u + 1) * i * M_PI / (2 * ROWS))
 						* cos((2 * v + 1) * j * M_PI / (2 * COLS));
 
 			if (!i && !j) k = 0.5;
 			else if ((!i && j) || (i && !j)) k = 1 / sqrt(2);
 			else k = 1;
+			
+	    output_1Dto2Darr[i*COLS+j] = 2*csum*k/COLS;
+			csum=0;		
+			}
+		}
 
-		   ppResult_2D[i][j]= (2 * csum * k) / COLS; // DCT 연산 이후 값들에 대해 동적 배열로 할당된 메모리에 값을 저장.
-			printf("%.1f ", ppResult_2D[i][j]); 
+	free(input_dynArr);
+		float(*presult)[COLS] = (float(*)[COLS])output_1Dto2Darr;//1차원 배열을 2차원배열로 casting
+		
+	for (i = 0; i < ROWS; i++){ 
+		for (j = 0; j < COLS; j++){ 
+			printf("%.1f ", presult[i][j]);//실제로 2차원 캐스팅으로 표현 됨.
 		}
 		printf("\n");
 	}
-	free(dynamicArray_1d);
-	return ppResult_2D;
+
+ return output_1Dto2Darr;
 }
 
+
 void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
-
-
 #ifdef DCT_1d
 	float result[ROWS*COLS];
 	DCT1d(buffer, result);
 #elif defined(malloc_DCT_1d)
-	float** ppResult_2D = (float**)malloc(sizeof(float*)*ROWS);// 2차원 포인터 배열을 가지는 포인터 
+	unsigned char* input_dynArr = (unsigned char*)malloc(ROWS * COLS * sizeof(unsigned char));// input 1차원 동적 배열
+	for (int i = 0; i < ROWS; i++)
+		for (int j = 0; j < COLS; j++)
+			input_dynArr[i*COLS + j] = buffer[i][j];// rdata.bin 2D to 1d 
 
-	for(int i=0; i<COLS; i++)
-		ppResult_2D[i]=(float*)malloc(sizeof(float)*COLS); //i는 ROWS의 index주소를 가리키고( 간접 주소 지정 방식) 그 주소가 가리키는 곳은  malloc()을 써서 float타입의 COLS 수만큼을 크기를 할당 받은 메모의 첫 주소[0]번째 열(항)임... 
-	    
-	dynamic_DCT_1Dto2D(buffer, ppResult_2D);
-
-	float**result = (float**)malloc(sizeof(float*) * ROWS);
-	for (int i = 0; i < ROWS; i++) {
-		result[i] = (float*)malloc(sizeof(float) * COLS);
-		memcpy(result[i], ppResult_2D[i], sizeof(float) * COLS);
-	}
-
-	for(int i=0; i<ROWS;i++)
-		free(ppResult_2D[i]);
-
-	free(ppResult_2D);
+	float* output_1Dto2Darr=(float*)malloc(sizeof(float)*COLS*COLS); //output 1차원 동적배열
+	   
+	dyn_DCT_1Dto2D(input_dynArr, output_1Dto2Darr);
+	float* result = output_1Dto2Darr;//메모리 해제를 output_1Dto2Darr 한다면 result가 가리키는 주소의 값은 메모리가 해제된 값이 되므로 dummy값을 가짐.
 #else
 	float result[ROWS][COLS];
 	DCT(buffer, result); // buffer는 fread한 주소 가리킴 , result는 DCT 변환 된 것
@@ -220,13 +198,10 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 
 	fwrite(result, sizeof(char), ROWS*COLS, DCT_rdata_file);
 	fclose(DCT_rdata_file);
-
 #ifdef malloc_DCT_1d
-	for(int i=0; i<COLS; i++)
-		free(result[i]);
-	free(result);
-	printf("메모리해제\n");// 종료되는 시점이 명확하다면 free를 안해도 종료 시 반환이 되나, 그게 아니라면... 멀티 쓰레딩이든 시점이 명확하지 않을 시 지속적으로 memory leak이 발생할 수 있음.
-#endif 
+	printf("메모리해제 해야 완료 \n");
+	free(output_1Dto2Darr);
+#endif
 
 	printf("complete 'DCT_rdata_file'\n");
 }
