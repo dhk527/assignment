@@ -28,31 +28,33 @@ void AddNewNode(const char* pszId, const char* pszEmail) // scr로 쓸 부분인
 	}
 }
 
-void ReleasesList()
+void ReleasesList() // free 및 백업
 {
 	USERDATA* pTmp = g_pHeadNode;
 	USERDATA* pDelete;
 	while (pTmp != NULL)
 	{
 		pDelete = pTmp;
-		
+
 		printf("pDelete : [%p] %s, %s [%p]\n",
 				pDelete, pDelete->Id, pDelete->Email, pDelete->pNext);
-		
+
 		pTmp = pTmp -> pNext; //pTmp는 overwrite되서 다음 Head를 가리킴.
-		free(pDelete); // pDelete는 지금 point는 살아있죠? 
+		free(pDelete); //
 	}
 
 	g_pHeadNode = NULL;
 }
 
-
-int main()
+void UserData()
 {
 	AddNewNode("dhk","dhk@waric.co.kr");
 	AddNewNode("jhl","jhl@waric.co.kr");
-	AddNewNode("ebj","ebj@waric.co.kr");
+	AddNewNode("ebj","ebj@waric.co.kr");// 출력 시 가장 먼저 출력됨. head쪽에 data추가하기 때문.
+}
 
+void PrintList()
+{
 	USERDATA* pTmp=g_pHeadNode;
 	while (pTmp != NULL)
 	{
@@ -61,7 +63,12 @@ int main()
 
 		pTmp = pTmp->pNext; // 다음 list 연결!
 	}
+}
 
+int main()
+{
+	UserData();
+	PrintList();
 	ReleasesList();
 	return 0;
 }
