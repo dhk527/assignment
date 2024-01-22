@@ -50,7 +50,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
 			else k = 1;
 
 			result[i * n + j] = (2 * csum * k) / n;
-			printf("%.1f ", result[i*n + j]); // fractio 아래 1자리
+			printf("%.1f ", result[i*n + j]); // fraction 아래 1자리
 		}
 		printf("\n");
 	}    
@@ -129,14 +129,13 @@ void DCT(unsigned char buffer[ROWS][COLS], float result[ROWS][COLS]){
 
 }
 
-float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1Dto2Darr)
+float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1D_dynarr)
 {
 	int i, j;
 	float csum = 0.0f;
 	float k = 0.0f;
-//	float result[ROWS*COLS];
 
-	printf("\n\n DCT malloc-1-Dimension 변환 시 : \n");
+	//printf("\n\n DCT malloc-1-Dimension 변환 시 : \n");
 	for (i = 0; i < ROWS; i++) {
 		for (j = 0; j < COLS; j++) {
 			for (int u = 0; u < ROWS; u++)
@@ -149,22 +148,15 @@ float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1Dto2Darr)
 			else if ((!i && j) || (i && !j)) k = 1 / sqrt(2);
 			else k = 1;
 			
-	    output_1Dto2Darr[i*COLS+j] = 2*csum*k/COLS;
+	    output_1D_dynarr[i*COLS+j] = 2*csum*k/COLS;
 			csum=0;		
 			}
 		}
 
 	free(input_dynArr);
-		float(*presult)[COLS] = (float(*)[COLS])output_1Dto2Darr;//1차원 배열을 2차원배열로 casting
-		
-	for (i = 0; i < ROWS; i++){ 
-		for (j = 0; j < COLS; j++){ 
-			printf("%.1f ", presult[i][j]);//실제로 2차원 캐스팅으로 표현 됨.
-		}
-		printf("\n");
-	}
 
- return output_1Dto2Darr;
+ return output_1D_dynarr;
+ 
 }
 
 
@@ -176,12 +168,24 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 	unsigned char* input_dynArr = (unsigned char*)malloc(ROWS * COLS * sizeof(unsigned char));// input 1차원 동적 배열
 	for (int i = 0; i < ROWS; i++)
 		for (int j = 0; j < COLS; j++)
-			input_dynArr[i*COLS + j] = buffer[i][j];// rdata.bin 2D to 1d 
-
-	float* output_1Dto2Darr=(float*)malloc(sizeof(float)*COLS*COLS); //output 1차원 동적배열
+			input_dynArr[i*COLS + j] = buffer[i][j];// rdata.bin 2D to 1d, deep copy 
+	float* output_1D_dynarr=(float*)malloc(sizeof(float)*COLS*COLS); //output 1차원 동적배열
 	   
-	dyn_DCT_1Dto2D(input_dynArr, output_1Dto2Darr);
-	float* result = output_1Dto2Darr;//메모리 해제를 output_1Dto2Darr 한다면 result가 가리키는 주소의 값은 메모리가 해제된 값이 되므로 dummy값을 가짐.
+	dyn_DCT_1Dto2D(input_dynArr, output_1D_dynarr); // 1차원 input, output 동적 할당 return 반환은 output으로 
+
+	float(*casting_output_2D)[COLS] = (float(*)[COLS])output_1D_dynarr;
+	//1차원 배열을 2차원배열로 casting
+	//l-value는 COLS 열만큼을 가지는 배열의 첫 주소를 가리킴
+	//r-value는 type casting으로 l-value의 형식과 동일하고 1D를 2D처럼 casting시킴.
+	printf("1차원을 2차원으로 casting하기\n");
+	for (int i = 0; i < ROWS; i++){ 
+		for (int j = 0; j < COLS; j++){ 
+			printf("%.1f ", casting_output_2D[i][j]);//실제로 2차원 캐스팅으로 표현 됨.
+		}
+		printf("\n");
+	}
+
+	float* result=output_1D_dynarr;//메모리 해제를 output_1Dto2Darr 한다면 result가 가리키는 주소의 값은 메모리가 해제된 값이 되므로 dummy값을 가짐. shallow copy
 #else
 	float result[ROWS][COLS];
 	DCT(buffer, result); // buffer는 fread한 주소 가리킴 , result는 DCT 변환 된 것
@@ -200,7 +204,7 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 	fclose(DCT_rdata_file);
 #ifdef malloc_DCT_1d
 	printf("메모리해제 해야 완료 \n");
-	free(output_1Dto2Darr);
+	free(output_1D_dynarr);
 #endif
 
 	printf("complete 'DCT_rdata_file'\n");
