@@ -93,6 +93,13 @@ USERDATA* SearchById(const char* pszId)//UI
 	printf("\"%s\": Not found\n", pszId);
 }
 
+void inputToSearch()
+{
+	char Id[32];
+	puts("Input your Id");
+	scanf("%s",Id);
+	
+
 USERDATA* SearchToRemove(USERDATA **ppPrev, const char* pszId)//UI
 {
 	USERDATA* pCurrent=g_pHeadNode;
