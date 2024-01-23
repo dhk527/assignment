@@ -21,7 +21,6 @@ void AddNewNode(const char* pszId, const char* pszEmail) //const -> read-only
 	strcpy(pNewNode->Email, pszEmail);
 	pNewNode->pNext = NULL;
 
-	
 	if(g_pHeadNode == NULL) 
 		g_pHeadNode = pNewNode;
 	else 
@@ -40,9 +39,8 @@ void CreateData()
 	scanf("%s",Id);
 	printf("\"Email\": ");
 	scanf("%s",Email);
-	
+
 	AddNewNode(Id, Email);
-	getchar();
 }
 
 void ReleasesList() // backup & free
@@ -74,7 +72,6 @@ void PrintList()
 
 		pTmp = pTmp->pNext;
 	}
-	getchar();
 }
 
 USERDATA* SearchById(const char* pszId)//UI
@@ -88,17 +85,19 @@ USERDATA* SearchById(const char* pszId)//UI
 			return pTmp;
 		}
 
-	pTmp = pTmp->pNext;
+		pTmp = pTmp->pNext;
 	}
 	printf("\"%s\": Not found\n", pszId);
 }
 
-void inputToSearch()
+void InputToSearch()
 {
 	char Id[32];
 	puts("Input your Id");
 	scanf("%s",Id);
-	
+	SearchById(Id);
+	getchar();
+}
 
 USERDATA* SearchToRemove(USERDATA **ppPrev, const char* pszId)//UI
 {
@@ -115,6 +114,8 @@ USERDATA* SearchToRemove(USERDATA **ppPrev, const char* pszId)//UI
 		pCurrent = pCurrent->pNext;//찾을 때까지 g_pheadnode부터
 	}
 	printf("\"%s\": Not found\n", pszId);
+	getchar();
+	return 0;
 }
 
 void RemoveNode(USERDATA* pPrev)
@@ -130,6 +131,7 @@ void RemoveNode(USERDATA* pPrev)
 			g_pHeadNode=pRemove->pNext;
 			printf("RemoveNode(): %s\n\n", pRemove->Id);
 			free(pRemove);
+			getchar();
 		}
 		return;
 	}
@@ -138,13 +140,20 @@ void RemoveNode(USERDATA* pPrev)
 	free(pRemove); 
 }
 
+char* InputToRemove(char* Id)
+{
+	puts("Input Delete USERDATA");
+	scanf("%s",Id);
+	return Id;
+}
+
 MENU Printmenu()
 {
 	MENU input=0;
 
 	system("clear");
 	printf("[1]NEW\t[2]Search\t[3]Print\t[4]Remove\t[0]Exit\n");
-	scanf("%d",(int*)&input);
+	scanf("%d%*c",(int*)&input);
 	return input;
 }
 
@@ -158,60 +167,35 @@ int main()
 		switch (menu)
 		{
 			case NEW:
-			CreateData();
-			break;
+				CreateData();
+				break;
 
 			case SEARCH:
-			SearchById(" ");
-			getchar();
-			break;
+				InputToSearch();
+				break;
 
 			case PRINT:
-			PrintList();
-			getchar();
-			break;
+				PrintList();
+				break;
 
 			case REMOVE:
-			if(SearchToRemove(&pPrev, " ") != NULL)
-				RemoveNode(pPrev);
-			getchar();
-			break;
+				char Id[32];
+				InputToRemove(Id);
+				if(SearchToRemove(&pPrev,Id) != NULL)
+					RemoveNode(pPrev);
+				break;
 
 			default:
-			ReleasesList();
-			break;
-		
+				ReleasesList();
+				break;
+
 		}
+		getchar();
 
 	}
 
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
