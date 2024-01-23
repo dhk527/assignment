@@ -192,7 +192,6 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 #endif
 	printf("\ncomplete DCT transfomation\n");
 
-
 	FILE* DCT_rdata_file;
 
 	DCT_rdata_file = fopen("DCT_rdata.bin","wb");
@@ -206,7 +205,6 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 	printf("메모리해제 해야 완료 \n");
 	free(output_1D_dynarr);
 #endif
-
 	printf("complete 'DCT_rdata_file'\n");
 }
 
