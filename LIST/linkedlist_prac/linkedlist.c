@@ -161,6 +161,7 @@ int main()
 {
 	MENU menu=0;
 
+	char Id[32];
 	USERDATA* pPrev=NULL;
 	while((menu=Printmenu())!=0)
 	{
@@ -179,7 +180,6 @@ int main()
 				break;
 
 			case REMOVE:
-				char Id[32];
 				InputToRemove(Id);
 				if(SearchToRemove(&pPrev,Id) != NULL)
 					RemoveNode(pPrev);
