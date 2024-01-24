@@ -14,8 +14,8 @@ void AddNewNode(const char* pszId, const char* pszEmail) //const -> read-only
 		g_pHeadNode = pNewNode;
 	else 
 	{ 
-		pNewNode->pNext=g_pHeadNode; 
-		g_pHeadNode = pNewNode; 
+		pNewNode->pNext=g_pHeadNode;// g_pHeadNode주소는 NewNode의 자기 참조 구조체가 assign 
+		g_pHeadNode = pNewNode; // 새로 생긴 node의 주소는 g_pHeadNode가 가리킴
 	}
 }
 
@@ -39,7 +39,7 @@ void ReleasesList() // backup & free
 
 void PrintList()
 {
-	printf("\nData Table Filed\n");
+	printf("\nData Table Record\n");
 	USERDATA* pTmp=g_pHeadNode;
 	while (pTmp != NULL)
 	{
@@ -48,9 +48,10 @@ void PrintList()
 
 		pTmp = pTmp->pNext;
 	}
+	printf("\n End of Record \n");
 }
 
-USERDATA* SearchById(const char* pszId)//UI
+USERDATA* SearchById(const char* pszId)
 {
 	USERDATA* pTmp=g_pHeadNode;
 	while (pTmp != NULL)

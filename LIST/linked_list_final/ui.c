@@ -21,16 +21,15 @@ void InputToSearch()
 {
 	char Id[32];
 	puts("Input your Id");
-	scanf("%s",Id);
+	scanf("%s%*c",Id);
 	SearchById(Id);
-	getchar();
 }
 
-char* InputToRemove(char* Id)
+char* InputToRemove(char* pId)
 {
-	puts("Input Delete USERDATA");
-	scanf("%s",Id);
-	return Id;
+	puts("Input \"id\" to delete ");
+	scanf("%s",pId);
+	return pId;
 }
 
 MENU Printmenu()
@@ -39,7 +38,7 @@ MENU Printmenu()
 
 	system("clear");
 	printf("[1]NEW\t[2]Search\t[3]Print\t[4]Remove\t[0]Exit\n");
-	scanf("%d%*c",(int*)&input);
+	scanf("%d",(int*)&input);
 	return input;
 }
 
@@ -81,28 +80,3 @@ void EventLoop()
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

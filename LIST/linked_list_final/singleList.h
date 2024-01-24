@@ -7,16 +7,17 @@ typedef struct USERDATA
 	char Id[32];
 	char Email[64];
 
-	struct USERDATA* pNext; 
+	struct USERDATA* pNext; // 자기참조 구조체 
 } USERDATA;
 
-extern USERDATA* g_pHeadNode; //자기참조 구조체 
+USERDATA* g_pHeadNode;
 
 void AddNewNode(const char* pszId, const char* pszEmail);
 void ReleasesList(); // backup & free
 void PrintList();
-USERDATA* SearchById(const char* pszId);//UI      
-USERDATA* SearchToRemove(USERDATA **ppPrev, const char* pszId);//UI   
+USERDATA* SearchById(const char* pszId);      
+
+USERDATA* SearchToRemove(USERDATA **ppPrev, const char* pszId);   
 void RemoveNode(USERDATA* pPrev);          
 
 #endif

@@ -5,7 +5,7 @@ typedef enum MENU {EXIT, NEW, SEARCH, PRINT, REMOVE} MENU;
 
 void CreateData();
 void InputToSearch();
-char* InputToRemove(char* Id);
+char* InputToRemove(char*); 
 extern MENU Printmenu();
 void EventLoop();
 

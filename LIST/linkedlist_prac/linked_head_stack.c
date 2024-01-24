@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-typedef struct USERDATA
+typedef struct USERDATA //
 {
 	char Id[32];
 	char Email[64];
@@ -68,6 +68,11 @@ void PrintList()
 
 int main()
 {
+	int b=sizeof(USERDATA*);
+	int c=sizeof(USERDATA);
+printf("%d\n",b);
+printf("%d\n",c);
+putchar('\n');
 	UserData();
 	PrintList();
 	ReleasesList();
