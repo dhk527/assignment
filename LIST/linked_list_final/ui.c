@@ -58,7 +58,12 @@ MENU Printmenu()
 
 	system("clear");
 	printf("[1]NEW\t[2]Search\t[3]Print\t[4]Remove\t[0]Exit\n");
-	scanf("%d%*c",(int*)&input);
+	while((scanf("%d%*c",(int*)&input))==0)
+	{
+		puts("type number, not string");
+		while (getchar() != '\n');
+	}
+
 	return input;
 }
 

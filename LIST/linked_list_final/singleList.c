@@ -65,7 +65,6 @@ USERDATA* SearchToRemove(USERDATA** ppPrev, const char* pszId)//Search와 비슷
 		pCurrent = pCurrent->pNext;//찾을 때까지 g_pheadnode부터
 	}
 	printf("\"%s\": Not found", pszId);
-	getchar();
 	return 0;
 }
 
@@ -81,8 +80,8 @@ void RemoveNode(USERDATA* pPrev)
 			pRemove = g_pHeadNode;
 			g_pHeadNode=pRemove->pNext;
 			printf("RemoveNode(): %s\n\n", pRemove->Id);
-			free(pRemove);
 			getchar();
+			free(pRemove);
 		}
 		return;
 	}
