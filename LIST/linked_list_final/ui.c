@@ -1,34 +1,54 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "ui.h"
 #include "singleList.h"
+
+void Blockbufferflow(char* typeString)
+{
+	do{
+		 if(strlen(typeString)>=31)
+		 {
+		 puts("do not exceed 31 byte in input");
+		 int c;
+		 while ((c = getchar()) != '\n'&& c != EOF);// 입력 버퍼 지우기 
+		 printf("please retype : ");
+		 scanf("%31s",typeString);
+		 }
+	}while(strlen(typeString)>=31);
+	getchar();
+}
 
 void CreateData()
 {
 	char Id[32];
-	char Email[64];
+	char Email[32];
 
 	printf("\"Id\": ");
-	scanf("%s",Id);
+	scanf("%31s",Id);
+	Blockbufferflow(Id);
+
 	printf("\"Email\": ");
-	scanf("%s",Email);
+	scanf("%31s",Email);
+	Blockbufferflow(Email);
 
 	AddNewNode(Id, Email);
 }
 
-
 void InputToSearch()
 {
 	char Id[32];
-	puts("Input your Id");
-	scanf("%s%*c",Id);
+	printf("Input your Id : ");
+	scanf("%31s%*c",Id);
+	Blockbufferflow(Id);
 	SearchById(Id);
 }
 
 char* InputToRemove(char* pId)
 {
-	puts("Input \"id\" to delete ");
-	scanf("%s",pId);
+	printf("Input \"id\" to delete : ");
+	scanf("%31s%*c",pId);
+	Blockbufferflow(pId);
 	return pId;
 }
 
@@ -38,7 +58,7 @@ MENU Printmenu()
 
 	system("clear");
 	printf("[1]NEW\t[2]Search\t[3]Print\t[4]Remove\t[0]Exit\n");
-	scanf("%d",(int*)&input);
+	scanf("%d%*c",(int*)&input);
 	return input;
 }
 

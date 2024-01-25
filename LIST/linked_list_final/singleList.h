@@ -1,11 +1,10 @@
 #ifndef singleList_H
 #define singleList_H
 
-
 typedef struct USERDATA
 {
 	char Id[32];
-	char Email[64];
+	char Email[32];
 
 	struct USERDATA* pNext; // 자기참조 구조체 
 } USERDATA;
