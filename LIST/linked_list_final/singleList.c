@@ -85,8 +85,8 @@ void RemoveNode(USERDATA* pPrev)
 		}
 		return;
 	}
-	pRemove=pPrev->pNext;// case2 : pPrevNode가 있을 때.
-	pPrev->pNext=pRemove->pNext;//중간 삭제 pNext 이어야함.
+	pRemove=pPrev->pNext;// case2 그냥 다음 노드 이어버리면 삭제해야할 node 주소 유실됨 -> 그러면 free를 못하지 
+	pPrev->pNext=pRemove->pNext;//
 	free(pRemove); 
 }
 

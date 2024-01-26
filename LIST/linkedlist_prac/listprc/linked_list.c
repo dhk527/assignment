@@ -12,7 +12,7 @@ typedef struct USERDATA
 
 	struct USERDATA* pNext;
 } USERDATA;
-/*
+
 void LoadList()
 {
 	FILE* fp=NULL;
@@ -29,7 +29,7 @@ void LoadList()
 	}
 	fclose(fp);
 }
-*/
+
 /*
 typedef enum MY_MENU { EXIT, NEW, SEARCH, PRINT, REMOVE } MY_MENU;
 
@@ -81,7 +81,6 @@ int main()
 	UserList[0].pNext=&UserList[1];
 	UserList[1].pNext=&UserList[2];
 	UserList[2].pNext=&UserList[3];
-	UserList[3].pNext=NULL;
 
 	USERDATA* pUser = &UserList[0];//자료구조에 대한 가시성 확보
 	while ( pUser != NULL)// tail node 이후에 탈출해야함.
@@ -93,6 +92,10 @@ int main()
 				pUser->pNext);
 		pUser=pUser->pNext; // 다음 list로 연결! 제일 마지막에 기술
 	}
+//'void* hi;
+
+//	free(hi);
+		
 
 //	LoadList();
 	
