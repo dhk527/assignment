@@ -39,7 +39,7 @@ void InputToSearch()
 {
 	char Id[32];
 	printf("Input your Id : ");
-	scanf("%31s%*c",Id);
+	scanf("%31s",Id);
 	Blockbufferflow(Id);
 	SearchById(Id);
 }
