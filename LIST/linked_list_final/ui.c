@@ -11,13 +11,16 @@ void Blockbufferflow(char* typeString)
 		 {
 		 puts("do not exceed 31 byte in input");
 		 int c;
-		 while ((c = getchar()) != '\n'&& c != EOF);// 입력 버퍼 지우기 
+		 while ((c = getchar()) != '\n'&& c != EOF);// check
 		 printf("please retype : ");
 		 scanf("%31s",typeString);
 		 }
 	}while(strlen(typeString)>=31);
 	getchar();
 }
+
+//buffer가 왜 있을까?
+//buffer가 왜 생길까?
 
 void CreateData()
 {

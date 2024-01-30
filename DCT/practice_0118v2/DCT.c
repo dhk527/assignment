@@ -1,6 +1,6 @@
 /*
    feedback 기능단위 분리가 부족 -> 차원 변환 따로 만들기, DCT, iDCT 연산도 따로 만들기...
-*/
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -27,7 +27,7 @@ void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]){
 	float csum = 0.0f;
 	float iresult[ROWS*COLS]; 
 	unsigned char change_buffer[ROWS*COLS];
-	
+
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) { 
 			change_buffer[i*n+j] = buffer[i][j];
@@ -129,7 +129,7 @@ void DCT(unsigned char buffer[ROWS][COLS], float result[ROWS][COLS]){
 
 }
 
-float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1D_dynarr)
+void dyn_DCT_1D(unsigned char* input_dynArr, float *output_1D_dynarr)
 {
 	int i, j;
 	float csum = 0.0f;
@@ -147,31 +147,12 @@ float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1D_dynarr)
 			if (!i && !j) k = 0.5;
 			else if ((!i && j) || (i && !j)) k = 1 / sqrt(2);
 			else k = 1;
-			
-	    output_1D_dynarr[i*COLS+j] = 2*csum*k/COLS;
+
+			output_1D_dynarr[i*COLS+j] = 2*csum*k/COLS;
 			csum=0;		
-			}
 		}
-
+	}
 	free(input_dynArr);
-
- return output_1D_dynarr;
- 
-}
-
-
-void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
-#ifdef DCT_1d
-	float result[ROWS*COLS];
-	DCT1d(buffer, result);
-#elif defined(malloc_DCT_1d)
-	unsigned char* input_dynArr = (unsigned char*)malloc(ROWS * COLS * sizeof(unsigned char));// input 1차원 동적 배열
-	for (int i = 0; i < ROWS; i++)
-		for (int j = 0; j < COLS; j++)
-			input_dynArr[i*COLS + j] = buffer[i][j];// rdata.bin 2D to 1d, deep copy 
-	float* output_1D_dynarr=(float*)malloc(sizeof(float)*COLS*COLS); //output 1차원 동적배열
-	   
-	dyn_DCT_1Dto2D(input_dynArr, output_1D_dynarr); // 1차원 input, output 동적 할당 return 반환은 output으로 
 
 	float(*casting_output_2D)[COLS] = (float(*)[COLS])output_1D_dynarr;
 	//1차원 배열을 2차원배열로 casting
@@ -184,6 +165,23 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 		}
 		printf("\n");
 	}
+
+}
+
+void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
+#ifdef DCT_1d // 조건부 컴파일, 매크로 정의 때 사용.
+	float result[ROWS*COLS];
+	DCT1d(buffer, result);
+#elif defined(malloc_DCT_1d)
+	unsigned char* input_dynArr = (unsigned char*)malloc(ROWS * COLS * sizeof(unsigned char));// input 1차원 동적 배열
+
+	for (int i = 0; i < ROWS; i++)
+		for (int j = 0; j < COLS; j++)
+			input_dynArr[i*COLS + j] = buffer[i][j];// rdata.bin 2D to 1d, deep copy 
+
+	float* output_1D_dynarr=(float*)malloc(sizeof(float)*COLS*COLS); //output 1차원 동적배열
+
+	dyn_DCT_1D(input_dynArr, output_1D_dynarr); // 1차원 input, output 동적 할당 return 반환은 output으로 
 
 	float* result=output_1D_dynarr;//메모리 해제를 output_1Dto2Darr 한다면 result가 가리키는 주소의 값은 메모리가 해제된 값이 되므로 dummy값을 가짐. shallow copy
 #else
@@ -204,6 +202,8 @@ void  DCT_stdout(unsigned char buffer[ROWS][COLS]){
 #ifdef malloc_DCT_1d
 	printf("메모리해제 해야 완료 \n");
 	free(output_1D_dynarr);
+	output_1D_dynarr=NULL;
+	result=NULL;
 #endif
 	printf("complete 'DCT_rdata_file'\n");
 }

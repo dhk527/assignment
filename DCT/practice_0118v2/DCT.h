@@ -7,7 +7,7 @@
 
 void DCT(unsigned char buffer[ROWS][COLS], float result[ROWS][COLS]);
 void DCT1d(unsigned char buffer[ROWS][COLS], float result[ROWS*COLS]);
-float* dyn_DCT_1Dto2D(unsigned char* input_dynArr, float *output_1Dto2Darr);
+void dyn_DCT_1D(unsigned char* input_dynArr, float *output_1Dto2Darr);
 void DCT_stdout(unsigned char buffer[ROWS][COLS]);
 
 #endif

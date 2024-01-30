@@ -1,3 +1,4 @@
+//연결 리스트란 ? 여러 구조체 인스턴스를 포인터로 연결한 자료구조.
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -10,9 +11,9 @@ void AddNewNode(const char* pszId, const char* pszEmail) //const -> read-only
 	strcpy(pNewNode->Email, pszEmail);
 	pNewNode->pNext = NULL;
 
-	if(g_pHeadNode == NULL) 
-		g_pHeadNode = pNewNode;
-	else 
+//	if(g_pHeadNode == NULL) 
+//		g_pHeadNode = pNewNode;
+//	else 
 	{ 
 		pNewNode->pNext=g_pHeadNode;// g_pHeadNode주소는 NewNode의 자기 참조 구조체가 assign 
 		g_pHeadNode = pNewNode; // 새로 생긴 node의 주소는 g_pHeadNode가 가리킴
@@ -56,7 +57,7 @@ USERDATA* SearchToRemove(USERDATA** ppPrev, const char* pszId)//Search와 비슷
 	USERDATA* pPrev = NULL;
 	while (pCurrent != NULL)
 	{
-		if(strcmp(pCurrent->Id,pszId) == 0)
+		if(strcmp(pCurrent->Id,pszId) == 0) 
 		{
 			*ppPrev = pPrev;//pRemoveNode를 가리키는 pointer
 			return pCurrent;
