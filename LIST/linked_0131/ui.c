@@ -1,4 +1,3 @@
-//여러 구조체 인스턴스들을 체인처럼 연결하는 포인터를 이용한 자료구조 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,14 +7,14 @@
 void Blockbufferflow(char* typeString)
 {
 	do{
-		 if(strlen(typeString)>=31)
-		 {
-		 puts("do not exceed 31 byte in input");
-		 int c;
-		 while ((c = getchar()) != '\n' && c != EOF);
-		 printf("please retype : ");
-		 scanf("%31s",typeString);
-		 }
+		if(strlen(typeString)>=31)
+		{
+			puts("do not exceed 31 byte in input");
+			int c;
+			while ((c = getchar()) != '\n' && c != EOF);
+			printf("please retype : ");
+			scanf("%31s",typeString);
+		}
 	}while(strlen(typeString)>=31);
 }
 
@@ -30,7 +29,7 @@ void CreateData()
 	printf("\"Id\": ");
 	scanf("%31s",Id);
 	Blockbufferflow(Id);
-	
+
 	printf("\"Email\": ");
 	scanf("%31s",Email);
 	Blockbufferflow(Email);
