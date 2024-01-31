@@ -45,7 +45,6 @@ void PrintList()//record된 data 확인
 		pTmp = pTmp->pNext;
 	}
 	printf("\n End of Record");
-	getchar(); 
 }
 
 void RemoveNode(const char* pszId)

@@ -3,7 +3,6 @@
 
 typedef enum MENU {EXIT, NEW, SEARCH, PRINT, REMOVE} MENU;
 
-void Blockbufferflow(char* );
 void CreateData();
 void InputToSearch();
 void InputToRemove(); 

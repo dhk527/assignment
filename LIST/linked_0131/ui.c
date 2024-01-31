@@ -4,18 +4,6 @@
 #include "ui.h"
 #include "singleList.h"
 
-void Blockbufferflow(char* typeString)
-{
-	
-	while(strlen(typeString)>31)//입력 버퍼 초과
-	{
-		while(getchar() != '\n');
-		puts("do not exceed 31 byte in input\nplease retype \"Id\": ");
-		scanf(" %31s",typeString);
-	}
-	getchar();
-}
-
 //buffer가 왜 생길까? 장치간의 속도를 극복하기 위해
 
 void CreateData()
@@ -25,11 +13,9 @@ void CreateData()
 
 	printf("\"Id\": ");
 	scanf("%31s",Id);
-	Blockbufferflow(Id);
 
 	printf("\"Email\": ");
 	scanf("%31s",Email);
-	Blockbufferflow(Email);
 
 	AddNewNode(Id, Email);
 }
@@ -40,7 +26,6 @@ void InputToSearch()
 	char Id[32];
 	puts("Input your Id");
 	scanf("%31s%*c",Id);
-	Blockbufferflow(Id);
 	SearchById(Id);
 }
 
@@ -49,7 +34,6 @@ void InputToRemove()
 	char Id[32];
 	puts("Input \"id\" to delete ");
 	scanf("%31s%*c",Id);
-	Blockbufferflow(Id);
 	RemoveNode(Id);
 }
 
