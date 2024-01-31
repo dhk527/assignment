@@ -6,25 +6,22 @@
 
 void Blockbufferflow(char* typeString)
 {
-	do{
-		if(strlen(typeString)>=31)
-		{
-			puts("do not exceed 31 byte in input");
-			int c;
-			while ((c = getchar()) != '\n' && c != EOF);
-			printf("please retype : ");
-			scanf("%31s",typeString);
-		}
-	}while(strlen(typeString)>=31);
+	
+	while(strlen(typeString)>31)//입력 버퍼 초과
+	{
+		while(getchar() != '\n');
+		puts("do not exceed 31 byte in input\nplease retype \"Id\": ");
+		scanf(" %31s",typeString);
+	}
+	getchar();
 }
 
-//buffer가 왜 있을까?
-//buffer가 왜 생길까?
+//buffer가 왜 생길까? 장치간의 속도를 극복하기 위해
 
 void CreateData()
 {
 	char Id[32];
-	char Email[64];
+	char Email[32];
 
 	printf("\"Id\": ");
 	scanf("%31s",Id);
