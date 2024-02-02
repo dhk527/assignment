@@ -3,6 +3,7 @@
 
 typedef enum MENU {EXIT, NEW, SEARCH, PRINT, REMOVE} MENU;
 
+void GetData(char*);
 void CreateData();
 void InputToSearch();
 void InputToRemove(); 

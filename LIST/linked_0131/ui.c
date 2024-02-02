@@ -4,7 +4,17 @@
 #include "ui.h"
 #include "singleList.h"
 
-//buffer가 왜 생길까? 장치간의 속도를 극복하기 위해
+void GetData(char* data)
+{
+	scanf("%s",data);
+	while(strlen(data)>32)
+	{
+		printf("do not over 32 byte, retype : ");
+		scanf("%s",data);
+	}
+		
+}
+
 
 void CreateData()
 {
@@ -12,10 +22,10 @@ void CreateData()
 	char Email[32];
 
 	printf("\"Id\": ");
-	scanf("%31s",Id);
+	GetData(Id);
 
 	printf("\"Email\": ");
-	scanf("%31s",Email);
+	GetData(Email);
 
 	AddNewNode(Id, Email);
 }
@@ -25,7 +35,7 @@ void InputToSearch()
 {
 	char Id[32];
 	puts("Input your Id");
-	scanf("%31s%*c",Id);
+	GetData(Id);
 	SearchById(Id);
 }
 
@@ -33,7 +43,7 @@ void InputToRemove()
 {
 	char Id[32];
 	puts("Input \"id\" to delete ");
-	scanf("%31s%*c",Id);
+	GetData(Id);
 	RemoveNode(Id);
 }
 
