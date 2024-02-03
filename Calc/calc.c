@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "calc.h"
 
-double add(double a, double b)
+double Add(double a, double b)
 {
 	return a + b;
 }
 
-double sub(double a, double b) 
+double Sub(double a, double b) 
 {
 	return a - b;
 }
@@ -21,14 +21,14 @@ double Div(double a, double b)
 	}
 }
 
-double mul(double a, double b) 
+double Mul(double a, double b) 
 {
 	return a * b;
 }
 
 double call_calc(calc select_type,double a,double b)
 {
-	select_type(a,b);
-	return select_type;
+	double result = select_type(a,b);
+	return printf("연산 값은 %.3lf",result);
 }
 

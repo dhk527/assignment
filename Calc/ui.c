@@ -4,12 +4,12 @@
 #include "ui.h"
 #include "calc.h"
 
-void GetValue(double* a ,double* b)
+void GetValue(double* pa ,double* pb)
 {
 	puts("첫 번째 값을 입력하시오");
-	scanf(" %d",a);
+	scanf(" %lf",pa);
 	puts("두 번째 값을 입력하시오");
-	scanf(" %d",b);
+	scanf(" %lf",pb);
 }
 
 MENU Printmenu()
@@ -28,8 +28,8 @@ MENU Printmenu()
 
 void EventLoop()
 {
-	double* a;
-	double* b;
+	double a;
+	double b;
 
 	MENU menu=0;
 
@@ -43,18 +43,26 @@ void EventLoop()
 				break;
 
 			case SUB:
+				
+				GetValue(&a,&b);
+				call_calc(Sub,a,b);
 				break;
 
 			case DIV:
+				GetValue(&a,&b);
+				call_calc(Div,a,b);
 				break;
 
 			case MUL:
+				GetValue(&a,&b);
+				call_calc(Mul,a,b);
 				break;
 
 			default:
 				break;
 
 		}
+		getchar();
 		getchar();
 
 	}
