@@ -2,7 +2,7 @@
 
 void GDC(int* numerator, int* denominator)
 {
-	int remainder=1;
+	int remainder;
 
 	remainder = (*numerator) % (*denominator); // 유클리드 호제법
 	*numerator = *denominator;
