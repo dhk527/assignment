@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void GDC(int* numerator, int* denominator)
+void GCD(int* numerator, int* denominator)
 {
 	int remainder;
 
@@ -9,14 +9,13 @@ void GDC(int* numerator, int* denominator)
 	
 	if (remainder==0)
 	{
-	printf("%d\n",(*denominator));
 	return ;
 	}
 
 	*denominator=remainder;
 
 
-	GDC(numerator, denominator); // 재귀호출
+	GCD(numerator, denominator); // 재귀호출
 }
 	
 
@@ -25,12 +24,18 @@ int main()
 {	
 	int numerator;
 	int denominator;
+	int origin_numerator;
+	int origin_denominator;
 
 	puts("first");
 	scanf("%d",&numerator);
 	puts("second");
 	scanf("%d",&denominator);
+	origin_numerator=numerator;
+	origin_denominator=denominator;
 
-	GDC(&numerator, &denominator);
-
+	GCD(&numerator, &denominator);
+	printf("GCD : %d\n",denominator);
+	printf("LCM : %d\n",(origin_numerator*origin_denominator)/(denominator));
 }
+
