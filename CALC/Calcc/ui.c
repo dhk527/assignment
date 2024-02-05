@@ -4,7 +4,7 @@
 #include "ui.h"
 #include "calc.h"
 
-void GetValue(double* pa ,double* pb)
+void SetValue(double* pa ,double* pb)
 {
 	puts("첫 번째 값을 입력하시오");
 	scanf(" %lf",pa);
@@ -38,23 +38,23 @@ void EventLoop()
 		switch (menu)
 		{
 			case ADD:
-				GetValue(&a,&b);
+				SetValue(&a,&b);
 				call_calc(Add,a,b);
 				break;
 
 			case SUB:
 				
-				GetValue(&a,&b);
+				SetValue(&a,&b);
 				call_calc(Sub,a,b);
 				break;
 
 			case DIV:
-				GetValue(&a,&b);
+				SetValue(&a,&b);
 				call_calc(Div,a,b);
 				break;
 
 			case MUL:
-				GetValue(&a,&b);
+				SetValue(&a,&b);
 				call_calc(Mul,a,b);
 				break;
 

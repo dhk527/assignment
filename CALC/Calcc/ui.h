@@ -3,7 +3,7 @@
 
 typedef enum MENU {EXIT, ADD, SUB, DIV, MUL} MENU;
 
-extern void GetData(double*, double*);
+extern void SetData(double*, double*);
 extern MENU Printmenu();
 extern void EventLoop();
 #endif
