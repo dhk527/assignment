@@ -1,70 +1,50 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
+#include <stdlib.h>
 #include "ui.h"
 #include "calc.h"
 
-void SetValue(double* pa ,double* pb)
+void Set_Operand(char* input, double *pa, double *pb)
 {
-	puts("첫 번째 값을 입력하시오");
-	scanf(" %lf",pa);
-	puts("두 번째 값을 입력하시오");
-	scanf(" %lf",pb);
-}
-
-MENU Printmenu()
-{
-	MENU input=0;
-
 	system("clear");
-	printf("[1]ADD\t[2]SUB\t[3]DIV\t[4]MUL\t[0]Exit\n");
-	while((scanf("%d%*c",(int*)&input))==0)
-	{
-		puts("type number, not string");
-		while (getchar() != '\n');
-	}
-	return input;
+	puts("터미널창에 Operator(operand 1,operand 2) 입력하시오");
+	scanf("%4c%le%c%le%c",input,pa,input+4,pb,input+5);
 }
 
 void EventLoop()
 {
 	double a;
 	double b;
-
-	MENU menu=0;
-
-	while((menu=Printmenu())!=0)
+	char* operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};
+	char input[7]={};
+	Set_Operand(input,&a,&b);
+	
+	if(!strcmp(input,operator[0]))
 	{
-		switch (menu)
-		{
-			case ADD:
-				SetValue(&a,&b);
-				call_calc(Add,a,b);
-				break;
-
-			case SUB:
-				
-				SetValue(&a,&b);
-				call_calc(Sub,a,b);
-				break;
-
-			case DIV:
-				SetValue(&a,&b);
-				call_calc(Div,a,b);
-				break;
-
-			case MUL:
-				SetValue(&a,&b);
-				call_calc(Mul,a,b);
-				break;
-
-			default:
-				break;
-
-		}
-		getchar();
-		getchar();
-
+		call_calc(Add,a,b);
+		return;
 	}
+
+	if(!strcmp(input,operator[1]))
+	{
+		call_calc(Sub,a,b);
+		return;
+	}
+
+	if(!strcmp(input,operator[2]))
+	{
+		call_calc(Div,a,b);
+		return;
+	}
+
+	if(!strcmp(input,operator[3]))
+	{
+		call_calc(Mul,a,b);
+		return;
+	}
+	else
+		puts("제대로 입력하세요");
+
+		
 
 }

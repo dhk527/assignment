@@ -18,7 +18,7 @@ void CCalc::SetValue(double* pa, double* pb)
 	cin >> *pb;
 }
 
-void CAdd::ccalc(double* pa, double* pb)
+void CAdd::ccalc(double* pa, double* pb) 
 {
 	double result = (*pa) + (*pb);
 	cin_fail();
@@ -43,8 +43,8 @@ void CDiv::ccalc(double* pa, double* pb)
 	}
 }
 
-void CMul::ccalc(double* pa, double* pb) 
-	{
+void CMul::ccalc(double* pa, double* pb)
+{
 	double result = (*pa) * (*pb);
 	cin_fail();
 	cout << "a*b: " << result <<  endl;
