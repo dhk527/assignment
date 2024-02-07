@@ -1,8 +1,6 @@
 #pragma once
 
-typedef enum MENU {EXIT, ADD, SUB, DIV, MUL} MENU;
-MENU Printmenu();
+void Set_Operand();
 void EventLoop();
-
 
 

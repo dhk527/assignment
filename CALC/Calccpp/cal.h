@@ -2,14 +2,11 @@
 #define CAL_H
 
 #include <iostream>
-#include <climits>
 using namespace std;
-void cin_fail();
 
 class CCalc 
 {
 	public:
-		void SetValue(double* pa, double* pb);
 		virtual void ccalc(double* pa, double* pb)=0;
 };
 

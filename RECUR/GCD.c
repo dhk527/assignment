@@ -23,7 +23,8 @@ void view_value(int* origin_numerator,int* origin_denominator,int* GCD_val)
 	putchar('\n');
 	printf("GCD : %d\n",*GCD_val);
 	printf("LCM : %d\n",(((*origin_numerator)*(*origin_denominator))/(*GCD_val)));
-	printf("a/b : %d/%d to simple form fraction c/d : %d/%d \n" ,*origin_numerator,*origin_denominator, *origin_numerator/(*GCD_val), *origin_denominator/(*GCD_val));
+	printf("a/b : %d/%d to simple form fraction c/d : %d/%d \n"
+	,*origin_numerator, *origin_denominator, *origin_numerator/(*GCD_val), *origin_denominator/(*GCD_val));
 }
 
 

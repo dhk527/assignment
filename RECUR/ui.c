@@ -6,8 +6,12 @@
 
 void SetValue(int* pa ,int* pb)
 {
-	puts("두 값을 입력하시오");
-	scanf(" %d %d",pa, pb);
+	puts("두 값을 입력하시오 ex)number1 number2");
+	while((scanf("%d %d",pa,pb))!=2)
+	{
+		puts("제대로 숫자를 치세요");
+		while (getchar() !='\n');
+	}
 }
 
 MENU Printmenu()

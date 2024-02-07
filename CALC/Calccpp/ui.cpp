@@ -1,63 +1,63 @@
 #include <iostream>
-#include <stdio.h>
+#include <cstring>
 #include "cal.h"
 #include "ui.h"
 
-MENU Printmenu()
+void Set_Operand(char* input, double *pa, double *pb)
 {
-	MENU input=EXIT;
-
 	system("clear");
-	printf("[1]CAdd\t[2]CSub\t[3]CDiv\t[4]CMul\t[0]Exit\n");
-	while((scanf("%d%*c",(int*)&input))==0)
-	{
-		puts("type number, not string");
-		while (getchar() != '\n');
-	}
-	return input;
+	cout<<"터미널창에 Operator(operand 1,operand 2) 입력하시오"<<endl;
+	scanf(" %4c%le%1c%le%1c",input,pa,input+4,pb,input+5);
 };
+
 void EventLoop()
 {
+	char input[7]={};
 	double a,b;
-	MENU menu=EXIT;
-	while((menu=Printmenu())!=0)
-	{
-		switch (menu)
+	const char* set_operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};// cpp는 문자열 아예 선언 시 수정 불가능하게 만들어버림.
+	int done=0;
+
+	while(done != 1)
+	{	
+		while(1)
 		{
-			case ADD:
-				{
-					CAdd add;
-					add.SetValue(&a,&b);
-					add.ccalc(&a,&b);
-					break;
-				}
-
-			case SUB:
-				{
-					CSub sub;
-					sub.SetValue(&a,&b);
-					sub.ccalc(&a,&b);
-					break;
-				}
-
-			case DIV:
-				{
-					CDiv div;
-					div.SetValue(&a,&b);
-					div.ccalc(&a,&b);
-					break;
-				}
-
-			case MUL:
-				{
-					CMul mul;
-					mul.SetValue(&a,&b);
-					mul.ccalc(&a,&b);
-					break;
-				}
-
-			default:
+			Set_Operand(input,&a,&b);
+			if(!strcmp(input,set_operator[0]))
+			{
+				CAdd add;
+				add.ccalc(&a,&b);
 				break;
+			}
+
+			if(!strcmp(input,set_operator[1]))
+			{
+				CSub sub;
+				sub.ccalc(&a,&b);
+				break;
+			}
+
+			if(!strcmp(input,set_operator[2]))
+			{
+				CDiv div;
+				div.ccalc(&a,&b);
+				break;
+			}
+
+			if(!strcmp(input,set_operator[3]))
+			{
+				CMul mul;
+				mul.ccalc(&a,&b);
+				break;
+			}
+			else
+			{
+				puts("제대로 입력하세요");
+				while(getchar() != '\n');
+				break;
+			}
 		}
+		puts("done?");
+		puts("[1]Yes, [0]No");
+		scanf("%d",&done);
 	}
 };
