@@ -59,7 +59,5 @@ void EventLoop()
 			default:
 				break;
 		}
-		getchar();
-		getchar();
 	}
 };

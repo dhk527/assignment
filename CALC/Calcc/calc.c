@@ -13,9 +13,10 @@ double Sub(double a, double b)
 
 double Div(double a, double b) 
 {
-	if (b != 0) {
+	if (b != 0) 
 		return a / b;
-	}else{
+	else
+	{
 		printf("Error: Division by zero\n");
 		return 0.0; 
 	}

@@ -1,4 +1,4 @@
-CC=gcc
+cc=gcc
 CFLAGS = -Wall -Wextra -Werror
 
 TARGET = Calculator 
@@ -15,7 +15,7 @@ run:$(TARGET)
 main.o: main.c calc.h ui.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-sinlgleList.o: calc.c singleList.h
+calc.o: calc.c calc.h
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 ui.o: ui.c ui.h

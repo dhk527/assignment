@@ -16,7 +16,7 @@ void EventLoop()
 	double a;
 	double b;
 	char* operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};
-	char input[7]={0};
+	char input[7]={};
 	int done=0;
 
 	while(done != 1)
@@ -55,7 +55,7 @@ void EventLoop()
 			}
 		}
 		puts("done?");
-		puts("[1]Yes, [0]No");
+		puts("[0]No, [1]Yes");
 		scanf("%d",&done);
 	}
 
