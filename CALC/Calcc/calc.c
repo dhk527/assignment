@@ -27,9 +27,10 @@ double Mul(double a, double b)
 }
 
 //double call_calc(double (*select_type)(double a, double c),double a,double b)
-double call_calc(calc select_type,double a, double b)
+void call_calc(calc select_type,double a, double b)
 {
 	double result = select_type(a,b);
-	return printf("연산 값은 %.3lf\n",result);
+	printf("연산 값은 %.3lf\n",result);
+	getchar();
 }
 
