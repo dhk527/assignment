@@ -4,7 +4,7 @@
 #include "GCD.h"
 #include "ui.h"
 
-void SetValue(int* pa ,int* pb)
+void SetValue(int* pa ,int* pb) // console 출력창에, GCD할 두 피연산자를 set
 {
 	puts("두 값을 입력하시오 ex)number1 number2");
 	while((scanf("%d %d",pa,pb))!=2)

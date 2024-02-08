@@ -14,7 +14,8 @@ void EventLoop()
 {
 	char input[7]={};
 	double a,b;
-	const char* set_operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};// cpp는 문자열 아예 선언 시 수정 불가능하게 만들어버림.
+	const char* set_operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};
+	// cpp는 문자열 선언 시 cosnt로 read-only임을 명시해야함.
 	int done=0;
 
 	while(done != 1)

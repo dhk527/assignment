@@ -27,8 +27,9 @@ double Mul(double a, double b)
 	return a * b;
 }
 
-//double call_calc(double (*select_type)(double a, double c),double a,double b)
-void call_calc(calc select_type,double a, double b)
+//double call_calc(double (*select_type)(double a, double c),double a,double b) // 형식 재선언하지 않을 시,
+
+void call_calc(calc select_type,double a, double b) // 연산 기능 함수 호출 및 Set_Operand의 parameter 중, *pa, *pb 값인 피연산자를 받음.
 {
 	double result = select_type(a,b);
 	printf("연산 값은 %.3lf\n",result);

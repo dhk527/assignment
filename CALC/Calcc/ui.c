@@ -4,14 +4,14 @@
 #include "ui.h"
 #include "calc.h"
 
-void Set_Operand(char* input, double *pa, double *pb)
+void Set_Operand(char* input, double *pa, double *pb) // 터미널창에 연산자와 피연산자를 초기화
 {
 	system("clear");
 	puts("터미널창에 Operator(operand 1,operand 2) 입력하시오");
 	scanf(" %4c%le%c%le%c",input,pa,input+4,pb,input+5);
 }
 
-void EventLoop()
+void EventLoop() // 연산 이벤트 반복
 {
 	double a;
 	double b;
