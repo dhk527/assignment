@@ -19,55 +19,28 @@ void EventLoop() // 연산 이벤트 반복
 	void* calc_arry[4]={Add, Sub, Div, Mul};
 	char input[7]={};
 	int done=0;
-
 	while(done != 1)
 	{	
 		Set_Operand(input,&a,&b);
-		for(int i=0 ; i<4; i++)
+		int valid_operator = 0;
+
+		for(int i=0;i<4;i++)
 		{
 			if(!strcmp(input,operator[i]))
+			{
 				call_calc(calc_arry[i],a,b);
+				valid_operator=1;
+				break;
+			}
 		}
-		puts("done?");
-		puts("[0]No, [1]Yes");
+		if(!valid_operator)
+		{
+			puts("입력 양식이 잘못됐습니다");
+			while(getchar()!='\n');
+		}
+
+		puts("done?\n[0]No, [1]Yes");
 		scanf("%d",&done);
 	}
 
 }
-/*	   while(1)
-	   {
-	   Set_Operand(input,&a,&b);
-	   if(!strcmp(input,operator[0]))
-	   {
-	   call_calc(Add,a,b);
-	   break;
-	   }
-
-	   if(!strcmp(input,operator[1]))
-	   {
-	   call_calc(Sub,a,b);
-	   break;
-	   }
-
-	   if(!strcmp(input,operator[2]))
-	   {
-	   call_calc(Div,a,b);
-	   break;
-	   }
-
-	   if(!strcmp(input,operator[3]))
-	   {
-	   call_calc(Mul,a,b);
-	   break;
-	   }
-	   else
-	   {
-	   puts("제대로 입력하세요");
-	   while(getchar() != '\n');
-	   break;
-	   }
-	   }*/
-
-
-
-	   
