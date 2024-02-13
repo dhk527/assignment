@@ -7,7 +7,8 @@ double Add(double, double);
 double Sub(double, double);
 double Div(double, double);
 double Mul(double, double);
-//extern double call_calc(double (*calc)(double, double), double, double);
+
+//double call_calc(double (*calc)(double, double), double, double);
 void call_calc(calc, double, double);
 
 #endif

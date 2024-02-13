@@ -42,7 +42,8 @@ void EventLoop() // 연산 이벤트 반복
 		if(!valid_operator)
 		{
 			fprintf(stderr,"제대로 입력하시오\n");//굳이 stdout인 puts, printf를 안쓰는 이유는? 
-												  //stderr는 null-buffering으로 성능은 떨어지지만, stdout은 프로그램 비정상 동작 시, 버퍼내용이 출력이 되지 않을 수 있음.
+												  //stderr는 null-buffering으로 성능은 떨어지지만
+												  //stdout은 프로그램 비정상 동작 시, 버퍼내용이 출력이 되지 않을 수 있음.
 			while(getchar()!='\n');//입력 버퍼에 '\n'을 제외한 문자열을 비움.
 		}
 

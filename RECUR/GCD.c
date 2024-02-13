@@ -8,9 +8,8 @@ void GCD(int* numerator, int* denominator) // 유클리드 호제법을 이용�
 	remainder = (*numerator) % (*denominator);
 	
 	if (remainder==0)
-	{
-	return ;
-	}
+		return ;
+	
 
 	*numerator = *denominator; // 재귀 호출 이후에 넣었을 시, segment fault 발생 (stack overflow)
 	*denominator=remainder;
