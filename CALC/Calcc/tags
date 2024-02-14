@@ -1,0 +1,20 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+Add	calc.c	/^double Add(double a, double b)$/;"	f
+CALC_H	calc.h	2;"	d
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+Div	calc.c	/^double Div(double a, double b) $/;"	f
+EventLoop	ui.c	/^void EventLoop() \/\/ 연산 이벤트 반복$/;"	f
+Mul	calc.c	/^double Mul(double a, double b) $/;"	f
+Set_Operand	ui.c	/^void Set_Operand(char* input, double *pa, double *pb) \/\/ 터미널창에 연산자와 피연산자를 초기화$/;"	f
+Sub	calc.c	/^double Sub(double a, double b) $/;"	f
+TARGET	Makefile	/^TARGET = Calculator $/;"	m
+UI_H	ui.h	2;"	d
+calc	calc.h	/^typedef double (*calc)(double, double);$/;"	t
+call_calc	calc.c	/^void call_calc(calc select_type,double a, double b) \/\/ 연산 기능 함수 호출 및 Set_Operand의 parameter 중, *pa, *pb 값인 피연산자를 받음.$/;"	f
+cc	Makefile	/^cc=gcc$/;"	m
+main	main.c	/^int main()$/;"	f

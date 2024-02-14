@@ -4,7 +4,7 @@
 #include "ui.h"
 #include "singleList.h"
 
-void GetData(char* data)
+void SetData(char* data)
 {
 	scanf("%s",data);
 	while(strlen(data)>32)
@@ -22,10 +22,10 @@ void CreateData()
 	char Email[32];
 
 	printf("\"Id\": ");
-	GetData(Id);
+	SetData(Id);
 
 	printf("\"Email\": ");
-	GetData(Email);
+	SetData(Email);
 
 	AddNewNode(Id, Email);
 }
@@ -35,7 +35,7 @@ void InputToSearch()
 {
 	char Id[32];
 	puts("Input your Id");
-	GetData(Id);
+	SetData(Id);
 	SearchById(Id);
 }
 
@@ -43,7 +43,7 @@ void InputToRemove()
 {
 	char Id[32];
 	puts("Input \"id\" to delete ");
-	GetData(Id);
+	SetData(Id);
 	RemoveNode(Id);
 }
 

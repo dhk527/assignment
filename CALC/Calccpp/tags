@@ -1,0 +1,22 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+CAL_H	cal.h	2;"	d
+CAdd	cal.h	/^class CAdd : public CCalc$/;"	c
+CC	Makefile	/^CC=g++$/;"	m
+CCalc	cal.h	/^class CCalc \/\/ 연산 기능의 다형성을 위해, 상속시킬 원형 함수 시그니쳐를 선언 및 순수 가상 함수로 강제로 재정의를 시키게함. $/;"	c
+CDiv	cal.h	/^class CDiv : public CCalc $/;"	c
+CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CMul	cal.h	/^class CMul : public CCalc $/;"	c
+CSub	cal.h	/^class CSub : public CCalc $/;"	c
+EventLoop	ui.cpp	/^void EventLoop()$/;"	f
+Set_Operand	ui.cpp	/^void Set_Operand(char* input, double *pa, double *pb)$/;"	f
+TARGET	Makefile	/^TARGET = Calculator $/;"	m
+ccalc	cal.cpp	/^void CAdd::ccalc(double* pa, double* pb)$/;"	f	class:CAdd
+ccalc	cal.cpp	/^void CDiv::ccalc(double* pa, double* pb)$/;"	f	class:CDiv
+ccalc	cal.cpp	/^void CMul::ccalc(double* pa, double* pb)$/;"	f	class:CMul
+ccalc	cal.cpp	/^void CSub::ccalc(double* pa, double* pb)$/;"	f	class:CSub
+main	main.cpp	/^int main()$/;"	f
