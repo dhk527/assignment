@@ -14,6 +14,17 @@ void SetValue(int* pa ,int* pb) // console 출력창에, GCD할 두 피연산자
 	}
 }
 
+
+void view_value(int* origin_numerator,int* origin_denominator,int* GCD_val) // console출력 창(터미널)에 결과값을 확인
+{
+	putchar('\n');
+	printf("GCD : %d\n",*GCD_val);
+	printf("LCM : %d\n",(((*origin_numerator)*(*origin_denominator))/(*GCD_val)));// 초기의 두 값의 곱/GCD 값 = LCM 최소 공배수
+	printf("a/b : %d/%d to simple form fraction c/d : %d/%d \n"
+			,*origin_numerator, *origin_denominator, *origin_numerator/(*GCD_val), *origin_denominator/(*GCD_val));
+	// 서로소는 1이외의 공약수가 없음을 일컫기 때문에 초기 값에서 최대공약수를 나눔.
+}
+
 MENU Printmenu()
 {
 	MENU input=0;
@@ -40,13 +51,15 @@ void EventLoop()
 		switch (menu)
 		{
 			case Operation:
+
 				SetValue(&numerator, &denominator);
-				
+
 				int origin_numerator=numerator;
 				int origin_denominator=denominator;
 
 				GCD(&numerator, &denominator);
 				view_value(&origin_numerator,&origin_denominator,&denominator);
+
 				break;
 
 			case EXIT:

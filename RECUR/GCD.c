@@ -1,8 +1,12 @@
+/*
+유클리드 호제법에서, 모듈러 연산(나머지 연산) 시 계산된 값이 0이 된 시점의 분모값(denominator)이 GCD를 가짐.
+최대 공약수를 가진다. GCD를 반환하지 않고 재귀호출을 이용해서 remainder가 0일 때, 분모의 값을 확인하여 구현.
+*/
 #include <stdio.h>
 #include "ui.h"
 
-void GCD(int* numerator, int* denominator) // 유클리드 호제법을 이용하여 GCD 값을 구하기.
-{
+void GCD(int* numerator, int* denominator) 
+{									
 	int remainder;
 	remainder = (*numerator) % (*denominator);
 	
@@ -13,16 +17,4 @@ void GCD(int* numerator, int* denominator) // 유클리드 호제법을 이용�
 	*denominator=remainder;
 
 	GCD(numerator, denominator); // 재귀 호출, remainder가 0이 될 때, return을 시킴.
-}
-
-void view_value(int* origin_numerator,int* origin_denominator,int* GCD_val) // console출력 창(터미널)에 결과값을 확인
-{
-	putchar('\n');
-	printf("GCD : %d\n",*GCD_val);
-	printf("LCM : %d\n",(((*origin_numerator)*(*origin_denominator))/(*GCD_val)));
-	printf("a/b : %d/%d to simple form fraction c/d : %d/%d \n"
-	,*origin_numerator, *origin_denominator, *origin_numerator/(*GCD_val), *origin_denominator/(*GCD_val));
-}
-
-
-
+}								// 재귀 호출 : 함수가 자기 자신을 호출하는 구조, 가독성 및 코드 간결화

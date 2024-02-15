@@ -16,6 +16,7 @@ void EventLoop()
 	double a,b;
 	const char* set_operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};
 	// cpp는 문자열 선언 시 cosnt로 read-only임을 명시해야함.
+	// const는 가독성 향상 및 안전성 의도를 명확하게 할 수 있게 됨.
 	int done=0;
 
 	while(done != 1)

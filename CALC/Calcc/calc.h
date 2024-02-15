@@ -1,6 +1,6 @@
 #ifndef CALC_H
 #define CALC_H
-typedef double (*calc)(double, double);
+typedef double (*calc)(double, double);// 함수를 가리키는 포인터로, 동적으로 함수를 호출하거나 함수를 다루는 데 사용.
 //만약, typedef 안할 시, double (*calc)(double, double)을 써야함.
 
 double Add(double, double);
