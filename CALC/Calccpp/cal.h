@@ -12,28 +12,28 @@ class CCalc // 추상 클래스 : cpp에서는 순수 가상 함수를 포함하
 							//순수 가상 함수를 통해 강제로 재정의(override)를 시키게함.
 							//코드의 일관성 및 코드 구현에서 생긴 실수를 강제로 방지.
 
-class CAdd : public CCalc
+class CAdd : public CCalc 
 {
 	public:
-		void ccalc(double*, double*);
+		void ccalc(double*, double*) override;
 };
 
 class CSub : public CCalc 
 {
 	public:
-		void ccalc(double*, double*);
+		void ccalc(double*, double*) override;
 };
 
 class CDiv : public CCalc 
 {
 	public:
-		void ccalc(double*, double*);
+		void ccalc(double*, double*) override;
 };
 
 class CMul : public CCalc 
 {
 	public:
-		void ccalc(double*, double*);
+		void ccalc(double*, double*) override;
 };
 
 #endif 
