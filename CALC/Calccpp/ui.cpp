@@ -15,7 +15,7 @@ void EventLoop()
 	CSub sub;
 	CDiv div;
 	CMul mul;
-	CCalc* Addr_operator[4]={&add,&sub,&div,&mul};// pCCalc을 통해 실제 계산을 가리킴.
+	CCalc* Addr_operator[4]={&add,&sub,&div,&mul};//pCCalc을 통해 실제 계산을 가리킴.
 
 	char input[7]={};
 	double a,b;
@@ -36,9 +36,9 @@ void EventLoop()
 			{
 				if(!strcmp(input,set_operator[i]))
 				{
-					pCCalc=Addr_operator[i];
-					cout<<pCCalc->ccalc(&a,&b)<<endl;
-					valid = 1;
+					pCCalc=Addr_operator[i];		// strcmp에서 연산 형식이 맞는 요소의 값을 pCCalc에 대입 시킴.
+					cout<<pCCalc->ccalc(&a,&b)<<endl; // pCCalc은 대입받은 객체의 멤버함수 접근하기 위해 화살표 연산자를 이용해
+					valid = 1;							// cca1c함수에 접근시켜서 연산 값을 얻어옵니다. 그것을 콘솔 출력창에 출력.
 					break;
 				}
 			}
