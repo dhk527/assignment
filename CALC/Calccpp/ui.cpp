@@ -38,8 +38,6 @@ void EventLoop()
 				{
 					pCCalc=Addr_operator[i];
 					cout<<pCCalc->ccalc(&a,&b)<<endl;
-					getchar();
-					getchar();
 					valid = 1;
 					break;
 				}
@@ -48,14 +46,14 @@ void EventLoop()
 			{
 				puts("제대로 입력하세요");
 				while(getchar() != '\n');
-				getchar();
 				break;
 			}
+			getchar();
 			break;
 		}
-	}
 	puts("done?");
 	puts("[1]Yes, [0]No");
 	scanf(" %d",&done);
+	}
 };
 
