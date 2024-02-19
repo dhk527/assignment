@@ -40,11 +40,11 @@ void EventLoop()
 					Is_valid_operate = 1;							// cca1c함수에 접근시켜서 연산 값을 얻어옵니다. 그것을 콘솔 출력창에 출력.
 					break;
 				}
+
 			if(Is_valid_operate != 1) // 제대로 타입이 되지 않았을 시, event 발생.
 			{
-				puts("제대로 입력하세요");
+				fprintf(stderr,"제대로 입력하세요");
 				while(getchar() != '\n');
-				break;
 			}
 			getchar();
 			break;
