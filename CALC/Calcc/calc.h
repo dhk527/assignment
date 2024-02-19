@@ -9,6 +9,7 @@ double Div(double, double);
 double Mul(double, double);
 
 //double call_calc(double (*calc)(double, double), double, double);
-void call_calc(calc, double, double);
+void call_calc(calc, double, double); 
+//함수 주소를 받는 인자와, 그 함수를 받는 피연산자 선언. 
 
 #endif

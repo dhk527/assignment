@@ -4,7 +4,6 @@ user interface 콘솔 입출력 소스 코드
 input에 양식에 맞게 입력이 됐을 시, 포인터 배열 operator를 이용하여 문자열 비교를 해서 양식에 맞을 시, 특정 연산 함수호출.
 */
 
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -22,9 +21,11 @@ void EventLoop() // 연산 이벤트 반복
 {
 	double a,b;
 	const char* operator[4]={"add(,)","sub(,)","div(,)","mul(,)"};//서로 다른 메모리 위치를 가리키는 포인터들을 묶어 다룰 때 사용.
-	void* calc_arry[4]={Add, Sub, Div, Mul};				// 위와 동일하나 함수의 주소(함수의 시작 주소를 값으로 가지는) 가리킴.
-	char input[7]={};									// 모든 배열 요소 '\0' 초기화, 콘솔 입력을 통해 operator와 문자열 비교를 함.
+	char input[7]={};									// 모든 배열 요소 '\0' 초기화, 콘솔 입력을 통해 operator와 문자열 비교 .
+	void* calc_arry[4]={Add, Sub, Div, Mul};				//배열 포인터이고 함수의 주소(함수의 시작 주소를 값으로 가지는) 가리킴.
+
 	int done=0;
+
 	while(done != 1)
 	{	
 		Set_Operand(input,&a,&b);
