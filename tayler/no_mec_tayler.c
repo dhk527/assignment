@@ -50,12 +50,13 @@ int main() {
     // 2차 미분을 사용하여 함수를 미분
     second_gradient = second_derivative(func, a, dx);
 	printf("2nd derivative at %.10f: %.10f\n", a, second_gradient);
-
+	
+	// 3rd order
     third_gradient = third_derivative(func, a, dx); 
 	printf("3rd derivative at %.10f: %.10f\n", a, third_gradient);
 
 	// Taylor 2차 차수를 이용한 근사값 계산
-    y_floating = func(a) + first_gradient * (x - a) + second_gradient * pow((x - a), 2) / factorial(2) + third_gradient*pow((x-a),3)/factorial(3);
+    y_floating = func(a) + first_gradient * (x - a) + second_gradient * pow((x - a), 2) / factorial(2) + third_gradient*pow(( x - a ), 3) / factorial(3);
     printf("\nsin(%.9f) ≈ %.9f\n", x, y_floating); // 부동 소수점 형식으로 출력
     printf("Error (sin(%.9f) - Taylor approximation): %.9f\n", x, sin(x) - y_floating); // 오차 출력
     return 0;

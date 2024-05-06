@@ -12,7 +12,7 @@ int factorial(int n) {
 }
 
 int main() {
-    float x = 0.3; // x 값을 (-PI/2, PI/2) 범위 내에서 선택 테일러 급수의 특수해인 멕클레린 급수를 이용.
+    float x = 0.707; // x 값을 (-PI/2, PI/2) 범위 내에서 선택 테일러 급수의 특수해인 멕클레린 급수를 이용.
     int n = 3 ; // 테일러 3rd 다항식의 차수
     float y_floating = 0; // 부동 소수점 형식으로 계산된 결과
 
@@ -25,7 +25,7 @@ int main() {
     printf("sin(%.9f) ≈ %.9f\n",pow(-1,i)*x, y_floating); // 부동 소수점 형식으로 출력
     }
 
-    printf("\nsin(%.9f) ≈ %.9f\n",x, y_floating); // 부동 소수점 형식으로 출력
+    printf("\nsin(%.9f) ≈ %.19f\n",x, y_floating); // 부동 소수점 형식으로 출력
     printf("sin(%.9f) - sin(%.9f)= error : %.9f",x,x, y_floating - sin(x)); // print Error = [sin(x) of tayler Nth serise]-[sin(x)]
     return 0;
 }
